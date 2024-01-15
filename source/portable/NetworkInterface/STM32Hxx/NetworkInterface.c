@@ -377,7 +377,7 @@ static BaseType_t xSTM32H_NetworkInterfaceInitialise( NetworkInterface_t * pxInt
 
                             if( xEthHandle.Init.MACAddr != ( uint8_t * ) pxEndPoint->xMACAddress.ucBytes )
                             {
-                                prvMACAddressConfig( &xEthHandle, xMACEntry, pxEndPoint->xMACAddress.ucBytes );
+                                prvMACAddressConfig( &xEthHandle, (uint32_t)xMACEntry, pxEndPoint->xMACAddress.ucBytes );
                                 xMACEntry += 8;
                             }
                             break;
@@ -472,7 +472,9 @@ static BaseType_t xSTM32H_NetworkInterfaceInitialise( NetworkInterface_t * pxInt
 /*-----------------------------------------------------------*/
 
 static BaseType_t xSTM32H_GetPhyLinkStatus( NetworkInterface_t * pxInterface )
-{
+{   
+    /* pxInterface unused, casting to void to avoid compiler errors */ 
+    (void)pxInterface;
     BaseType_t xReturn;
 
     if( xPhyObject.ulLinkStatusMask != 0U )

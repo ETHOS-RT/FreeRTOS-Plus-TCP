@@ -776,6 +776,8 @@ extern SemaphoreHandle_t xTXDescriptorSemaphore;
             /* set buffer address valid bit to RDES3 */
             SET_BIT( dmarxdesc->DESC3, ETH_DMARXNDESCRF_BUF1V );
 
+            /* pBuffer2 is not used, casting to void to avoid compiler errors */
+            (void)pBuffer2;
 /*  Not used for FreeRTOS+TCP */
 /*	if(pBuffer2 != NULL) */
 /*	{ */

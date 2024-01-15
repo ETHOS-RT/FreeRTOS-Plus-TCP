@@ -461,7 +461,9 @@ enum eFrameProcessingResult prvCheckIP4HeaderOptions( struct xNETWORK_BUFFER * c
                                                               ( ( ipSIZE_OF_IPv4_HEADER >> 2 ) & 0x0FU ) );
         }
     #else /* if ( ipconfigIP_PASS_PACKETS_WITH_IP_OPTIONS != 0 ) */
-        {
+        {   
+            /* pxNetworkBuffer unused, casting to void to remove compiler errors*/
+            (void)pxNetworkBuffer;
             /* 'ipconfigIP_PASS_PACKETS_WITH_IP_OPTIONS' is not set, so packets carrying
              * IP-options will be dropped. */
             eReturn = eReleaseBuffer;
